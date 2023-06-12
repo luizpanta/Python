@@ -1,4 +1,5 @@
-# teste
+'''
+#teste
 x = 10
 while not (x == 0):
     x = x-1
@@ -19,3 +20,23 @@ while (not terminou):
 
 print ("P = ", p)
 print ("I = ", i)
+'''
+def maior_primo(numero):
+    def eh_primo(numero):
+        if numero < 2:
+            return False
+        for i in range(2, int(numero ** 0.5) + 1):
+            if numero % i == 0:
+                return False
+        return True
+
+    while numero >= 2:
+        if eh_primo(numero):
+            return numero
+        numero -= 1
+
+    return None
+
+
+num = int(input("DIgite: "))
+maior_primo(num)
