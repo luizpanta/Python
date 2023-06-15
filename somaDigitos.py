@@ -7,4 +7,4 @@ while numero > 0:
     soma += digito       # Acumula o dígito na soma
     numero //= 10        # Remove o último dígito do número
 
-print("A soma dos dígitos é:", soma)
+print(soma)

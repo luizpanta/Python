@@ -11,10 +11,12 @@ if delta == 0:
     print("A unica raiz é ", x1)
 else:
     if delta < 0:
-        print("Está equação não possui raizes reais.\nNão pode calcular raiz negativa (delta negativo).")
+        print("esta equação não possui raizes reais")
 
+    #elif x1 == x2:
+        #print("a raiz dupla desta equação é ", x1)
+    
     else:
         x1 = (-b + math.sqrt(delta)) / (2 * a) 
         x2 = (-b - math.sqrt(delta)) / (2 * a)
-        print("Primeira raiz é ", x1)
-        print("Segunda raiz é ", x2)
+        print(f"as raízes da equação são {x1} e {x2}")

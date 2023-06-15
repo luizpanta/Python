@@ -12,6 +12,6 @@ numero = int(input("Digite um número: "))
 resultado = verifica_digito_adjacente(numero)
 
 if resultado:
-    print("O número possui dois dígitos adjacentes iguais.")
+    print("sim")
 else:
-    print("O número não possui dois dígitos adjacentes iguais.")
+    print("não")
