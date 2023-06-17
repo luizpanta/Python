@@ -1,30 +1,30 @@
-num = int(input("Digite um numero maior que 2: "))
+def éPrimo(numero):
 
-# Maior numero primo >= ao num
+    primo = False
 
-def primo(numero):
-    if numero > 1:
+    if numero % 2 == 0 or numero % 3 == 0 or numero % 4 == 0 or numero % 5 == 0 or numero % 6 == 0 or numero % 7 == 0:
+        primo = False
+        if numero % numero == 0:
+            primo = False
+        
+        elif numero > 1 and numero == 2 or numero == 3 or numero == 5 or numero == 7:
+            primo = True
+
+    else:
         primo = True
 
-        # Verificar se o número é divisível por algum outro número
-        for i in range(2, numero):
-            if numero % i == 0:
-                primo = False
-                break
-
-        # Imprimir o resultado
-        if primo:
-            print("primo")
-        else:
-            print("não primo")
-    else:
-        print("não primo")
+    return primo
 
 def maior_primo(numero):
-    if numero >= 2:
-        xxx
 
-    else:
-        print("Numero invalido")
+    for i in range(2, numero + 1):
+        if éPrimo(i):
+            maior_primo = i
+    return maior_primo
 
-maior_primo(num)
+num = int(input("Digite um numero maior que 2: "))
+
+if num <= 2:
+    print("Invalido")
+
+print(maior_primo(num))

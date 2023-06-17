@@ -1,8 +1,19 @@
+def fizzBuzz(numero):
+
+    if numero % 3 == 0 and numero % 5 != 0:
+        saida = "Fizz"
+
+    elif numero % 5 == 0 and numero % 3 != 0:
+        saida = "Buzz"
+
+    elif numero % 5 == 0 and numero % 3 == 0:
+        saida = "FizzBuzz"
+
+    else:
+        saida = numero
+
+    return saida
+
 numero = int(input("Digite um número inteiro: "))
 
-if numero % 3 == 0:
-    print("FizzBuzz")
-elif numero % 5 == 0:
-    print("FizzBuzz")
-else:
-    print(numero)
+print(fizzBuzz(numero))
