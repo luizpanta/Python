@@ -2,62 +2,75 @@
 
 # n peças na mesa inicial
 
+# m maximo de peças por jogada
+
 # player 1 retira de 1 até max peças na rodada
 
 # Quem tirar a ultima ganha
 
-# Verifica quem vai iniciar a jogada
-def iniciar(inicial, jogada):
+def computador_escolhe_jogada(n, m):
+    if n % (m + 1) != 0:
+        jogada = n % (m + 1)
+    else:
+        jogada = m
+    return jogada
+
+
+def usuario_escolhe_jogada(n, m):
     
-    if (jogada + 1) % inicial == 0:
-        # If n é multiplo de (m+1) computador convida o jogador a iniciar
-        print("Voce começa!\n")
-        return True
-    else:
-        # Else computador começa
-        print("Computador começa!\n")
-        return False
-
-
-# computador_escolha_jogada(n, m)
-def jogada_pc(mesa):
-    if mesa > 1:
-        mesa = mesa - 1
-    return mesa
-
-
-def jogada_usuario(mesa):
-    jogada = int(input("Quantas peças você vai tirar? "))
-    if valida_jogada(jogada, mesa):
-        mesa = mesa - jogada
-    else:
-        print("Jogada invalida! Digite novamente: ")
-    return mesa
-
-def valida_jogada(jogada, mesa):
+    valida_jogada = False
     
-    if jogada < mesa:
-        return jogada
-    else:
-        return print("Jogada invalida! Digite novamente: ")
+    while valida_jogada == False:
+        
+        jogada = input("Quantas peças você vai tirar? ")
+        
+        if jogada.isnumeric():
+            jogada = int(jogada)
+            if jogada <= m or jogada < n:
+                valida_jogada = True
+                return jogada
+            else:
+                print("Oops! Jogada inválida! Tente de novo. ")
+        else:
+            print("Oops! Jogada inválida! Tente de novo. ")
+            
+
 
 # partida()
 def partida():
     # Informa os dados de inicio
-    inicio = int(input("Quantas peças? "))
-    por_jogada = int(input("Limite de peças por jogada? "))    
-    mesa = inicio
-    max_jogada = mesa - por_jogada
-    jogador = iniciar(inicio, por_jogada)
+    n = int(input("Quantas peças? "))
+    m = int(input("Limite de peças por jogada? "))    
     
+    if (m + 1) % n == 0:
+        # If n é multiplo de (m+1) computador convida o jogador a iniciar
+        print("\nVoce começa!\n")
+        usuario_joga = True
+    else:
+        # Else computador começa
+        print("\nComputador começa!\n")
+        usuario_joga = False
+
     # Loop do game
-    while mesa > 0:
-        print(f"Agora restam {mesa} peças no tabuleiro.")
-        if jogador == True:
-            jogada_usuario(mesa)
+    while n > 0:
+        if n == 0 :
+            print("Fim do jogo! O computador ganhou!")
+            break        
+        print(f"Agora restam {n} peças no tabuleiro.")
+        if usuario_joga == True:
+            retirar = usuario_escolhe_jogada(n, m)
+            print(f"Você retirou {retirar} peças no tabuleiro.\n")
+            n -= retirar
+            usuario_joga = False
+            
         else:
-            jogada_pc()
-        return "O computador ganhou!"
+            retirar = computador_escolhe_jogada(n, m)
+            print(f"O computador retirou {retirar} peças no tabuleiro.\n")
+            n -= retirar
+            usuario_joga =True
+        if n == 0:
+            return "Fim do jogo! O computador ganhou!"
+            break
     
 
     
@@ -74,11 +87,12 @@ def campeonato():
     jogador = 0
     for i in range(1,4):
         print(f"**** Rodada {i} ****\n")
-        if partida() == "O computador ganhou!":
+        if partida() == "Fim do jogo! O computador ganhou!":
+            print("Fim do jogo! O computador ganhou!")
             pc += 1
         elif partida() == "Você ganhou!":
             jogador += 1
-            
+    print("**** Final do campeonato! ****\n")        
     print(f"Placar: Você {jogador} X {pc} Computador")
     
 # Abertura do game
