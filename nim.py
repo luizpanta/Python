@@ -26,7 +26,7 @@ def usuario_escolhe_jogada(n, m):
         
         if jogada.isnumeric():
             jogada = int(jogada)
-            if jogada <= m or jogada < n:
+            if jogada <= m and jogada < n and jogada > 0:
                 valida_jogada = True
                 return jogada
             else:
@@ -40,9 +40,15 @@ def usuario_escolhe_jogada(n, m):
 def partida():
     # Informa os dados de inicio
     n = int(input("Quantas peças? "))
-    m = int(input("Limite de peças por jogada? "))    
+    m = int(input("Limite de peças por jogada? "))
+    while m >= n:
+        print("Oops! Jogada inválida! Tente de novo. ")
+        m = int(input("Limite de peças por jogada? "))
+        if m <= n:
+            break
+            
     
-    if (m + 1) % n == 0:
+    if n % (m + 1) == 0:
         # If n é multiplo de (m+1) computador convida o jogador a iniciar
         print("\nVoce começa!\n")
         usuario_joga = True
@@ -53,9 +59,7 @@ def partida():
 
     # Loop do game
     while n > 0:
-        if n == 0 :
-            print("Fim do jogo! O computador ganhou!")
-            break        
+               
         print(f"Agora restam {n} peças no tabuleiro.")
         if usuario_joga == True:
             retirar = usuario_escolhe_jogada(n, m)
@@ -69,6 +73,7 @@ def partida():
             n -= retirar
             usuario_joga =True
         if n == 0:
+            print("Fim do jogo! O computador ganhou!")
             return "Fim do jogo! O computador ganhou!"
             break
     

@@ -1,5 +1,5 @@
 def vogal(letra):
-
+    letra.lower()
     if letra == "a":
         vogal = True
     elif letra == "e":
@@ -15,4 +15,4 @@ def vogal(letra):
     return vogal
 
 letra = input("Digite uma letra: ")
-print(vogal(letra.lower()))
+print(vogal(letra))

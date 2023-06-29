@@ -13,7 +13,3 @@ def fizzBuzz(numero):
         saida = numero
 
     return saida
-
-numero = int(input("Digite um número inteiro: "))
-
-print(fizzBuzz(numero))
