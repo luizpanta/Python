@@ -1,4 +1,4 @@
-def fizzBuzz(numero):
+def fizzbuzz(numero):
 
     if numero % 3 == 0 and numero % 5 != 0:
         saida = "Fizz"

@@ -1,5 +1,5 @@
 def vogal(letra):
-    letra.lower()
+    letra = letra.lower()
     if letra == "a":
         vogal = True
     elif letra == "e":
