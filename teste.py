@@ -3,7 +3,7 @@
 x = 10
 while not (x == 0):
     x = x-1
-    if x % 2 != 0: 
+    if x % 2 != 0:
       print (x)
 
 terminou = False
@@ -41,11 +41,47 @@ print ("I = ", i)
 # num = int(input("DIgite: "))
 # maior_primo(num)
 
-i = 0
-while i < 3:
-  j = 0
-  while j < 3:
-    print(3*i+j+1
-          )
-    j = j + 1
-  i = i + 1
+# i = 0
+# while i < 3:
+#   j = 0
+#   while j < 3:
+#     print(3*i+j+1
+#           )
+#     j = j + 1
+# #   i = i + 1
+
+# animais = ["gato", "cachorro", "papagaio", "arara", "jacare"]
+
+# for x in animais:
+#   print("--> ", x)
+
+# for x in range(len(animais)):
+#   print("--> ", animais[x])
+
+# for i in range(0, 50, 5):
+#   print(i)
+
+# pares = [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]
+# for x in range(5, 10):
+#   print(pares[x])
+
+valores = []
+for x in range(2, 10, 2):
+    valores.append(x)
+print(valores)
+
+pares = []
+for i in range(1, 10):
+  if i % 2 == 0:
+    pares.append(i) 
+print(pares)
+
+x = pares * 3
+del (x[-1])
+print(x)
+
+y = x
+print(y)    
+y.append(10)
+print(x)
+print(y)
