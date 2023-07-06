@@ -1,16 +1,21 @@
 # Função que recebe lista e inverte a ordem
 def inverte_lista(lista):
     nova_lista = []
-    for item in lista:
-        nova_lista.append(item)
-
-
-
-def inverte(lista):
-    nova_lista = []
-    for i in range(len(lista)):
-        nova_lista.append(lista[nova_lista.index(lista[i])])
+    for item in range(len(lista)):
+        new = len(lista) - item - 1
+        nova_lista.append(lista[new])
+        new -= 1
     return nova_lista
 
-lista = [1,2,3,4,5,6,7,8,]
-print(inverte(lista))
+def nova_lista(items):
+    lista = []
+    lista.append(items)
+    return lista
+
+entrada = 1
+while entrada > 0:
+    entrada = int(input("Digite um número: "))
+    lista = nova_lista(entrada)
+    invertida = inverte_lista(lista)
+for i in invertida:
+    print(i)
