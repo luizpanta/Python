@@ -65,23 +65,38 @@ print ("I = ", i)
 # for x in range(5, 10):
 #   print(pares[x])
 
-valores = []
-for x in range(2, 10, 2):
-    valores.append(x)
-print(valores)
+# valores = []
+# for x in range(2, 10, 2):
+#     valores.append(x)
+# print(valores)
 
-pares = []
-for i in range(1, 10):
-  if i % 2 == 0:
-    pares.append(i) 
-print(pares)
+# pares = []
+# for i in range(1, 10):
+#   if i % 2 == 0:
+#     pares.append(i) 
+# print(pares)
 
-x = pares * 3
-del (x[-1])
-print(x)
+# x = pares * 3
+# del (x[-1])
+# print(x)
 
-y = x
-print(y)    
-y.append(10)
-print(x)
-print(y)
+# y = x
+# print(y)    
+# y.append(10)
+# print(x)
+# print(y)
+
+# lista1 = ["carro", "barco"]
+# lista2 = lista1
+# lista3 = [lista1] * 3
+# lista4 = lista1 * 3
+
+lista1 = ["carro", "barco"]
+lista2 = [lista1] * 3
+lista3 = lista1 * 3
+lista1[1] = "metrô"
+
+print(lista1)
+print(lista2)
+print(lista3)
+#print(lista4)
