@@ -79,29 +79,47 @@ def med_frase(lista_frases):
     total_caracteres = sum(len(frase) for frase in lista_frases)
     return total_caracteres / len(lista_frases)
 
+
+
 def compara_assinatura(as_a, as_b):
     '''Essa função recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas.'''
-    # Inicialmente, calculamos a soma dos quadrados das diferenças entre os traços
-    soma_diferencas_quadradas = sum((as_a[i] - as_b[i]) ** 2 for i in range(len(as_a)))
-
-    # Calculamos a distância euclidiana
-    similaridade = (soma_diferencas_quadradas) ** 0.5
+    d1 = 0
+    c = 0
+    while c < 6:
+        d = abs(as_a[c]-as_b[c])
+        c +=1
+        d1 = d1 + d
+    similaridade = d1/6
     return similaridade
+
+
 
 def calcula_assinatura(texto):
     '''Essa função recebe um texto e deve devolver a assinatura do texto.'''
-    lista_palavras = separa_palavras(texto)
     lista_sentencas = separa_sentencas(texto)
-    lista_frases = [frase for sentenca in lista_sentencas for frase in separa_frases(sentenca)]
-
-    wal = tam_med_palavra(lista_palavras)  # tamanho médio de palavra
-    ttr = token(lista_palavras)  # Type-Token
-    hlr = hapax_legomana(lista_palavras)  # Razão Hapax Legomana
-    sal = med_sentencas(lista_sentencas)  # tamanho médio de sentença
-    sac = complex_sentenca(lista_frases, lista_sentencas)  # complexidade média da sentença
-    pal = med_frase(lista_frases)  # tamanho médio de frase
-
-    return [wal, ttr, hlr, sal, sac, pal]
+    
+    lista_frases = []
+    for sentenca in lista_sentencas:
+        frases_separadas = separa_frases(sentenca)
+        for frases in frases_separadas:
+            lista_frases.append(frases)
+            
+    lista_palavras = []
+    for frase in lista_frases:
+        palavras_separadas = separa_palavras(frase)
+        for palavra in palavras_separadas:
+            lista_palavras.append(palavra)
+    
+    assinatura = []
+    
+    assinatura.append(tam_med_palavra(lista_palavras))
+    assinatura.append(token(lista_palavras))
+    assinatura.append(hapax_legomana(lista_palavras))
+    assinatura.append(med_sentencas(lista_sentencas))
+    assinatura.append(complex_sentenca(lista_frases, lista_sentencas))
+    assinatura.append(med_frase(lista_frases))
+      
+    return assinatura
 
 def avalia_textos(textos, ass_cp):
     '''Essa função recebe uma lista de textos e uma assinatura ass_cp e deve devolver o número (1 a n) do texto com maior probabilidade de ter sido infectado por COH-PIAH.'''
@@ -118,8 +136,15 @@ def avalia_textos(textos, ass_cp):
 
     return texto_infectado
 
-if __name__ == "__main__":
-    assinatura = le_assinatura()
-    textos = le_textos()
-    texto_infectado = avalia_textos(textos, assinatura)
-    print(f"O autor do texto {texto_infectado} está infectado com COH-PIAH")
+ if __name__ == "__main__":
+     assinatura = le_assinatura()
+     textos = le_textos()
+     texto_infectado = avalia_textos(textos, assinatura)
+     print(f"O autor do texto {texto_infectado} está infectado com COH-PIAH")
+    
+# def teste_automatizado():
+#     print(compara_assinatura(as_a= [4.34, 0.05, 0.02, 12.81, 2.16, 0.0], as_b= [3.96, 0.05, 0.02, 22.22, 3.41, 0.0]))
+#     print(calcula_assinatura(texto="Senão quando, estando eu ocupado em preparar e apurar a minha invenção, recebi em cheio um golpe de ar; adoeci logo, e não me tratei. Tinha o emplasto no cérebro; trazia comigo a idéia fixa dos doidos e dos fortes. Via-me, ao longe, ascender do chão das turbas, e remontar ao Céu, como uma águia imortal, e não é diante de tão excelso espetáculo que um homem pode sentir a dor que o punge. No outro dia estava pior; tratei-me enfim, mas incompletamente, sem método, nem cuidado, nem persistência; tal foi a origem do mal que me trouxe à eternidade. Sabem já que morri numa sexta-feira, dia aziago, e creio haver provado que foi a minha invenção que me matou. Há demonstrações menos lúcidas e não menos triunfantes. Não era impossível, entretanto, que eu chegasse a galgar o cimo de um século, e a figurar nas folhas públicas, entre macróbios. Tinha saúde e robustez. Suponha-se que, em vez de estar lançando os alicerces de uma invenção farmacêutica, tratava de coligir os elementos de uma instituição política, ou de uma reforma religiosa. Vinha a corrente de ar, que vence em eficácia o cálculo humano, e lá se ia tudo. Assim corre a sorte dos homens."))
+#     print(calcula_assinatura(texto="Então resolveu ir brincar com a Máquina pra ser também imperador dos filhos da mandioca. Mas as três cunhas deram muitas risadas e falaram que isso de deuses era gorda mentira antiga, que não tinha deus não e que com a máquina ninguém não brinca porque ela mata. A máquina não era deus não, nem possuía os distintivos femininos de que o herói gostava tanto. Era feita pelos homens. Se mexia com eletricidade com fogo com água com vento com fumo, os homens aproveitando as forças da natureza. Porém jacaré acreditou? nem o herói! Se levantou na cama e com um gesto, esse sim! bem guaçu de desdém, tó! batendo o antebraço esquerdo dentro do outro dobrado, mexeu com energia a munheca direita pras três cunhas e partiu. Nesse instante, falam, ele inventou o gesto famanado de ofensa: a pacova."))
+
+# teste_automatizado()
